@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitForge Turbo AI - Maximum Vibe & Speed</title>
+    <title>FitForge AI // Core Training Module</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -23,86 +23,129 @@
 </head>
 <body class="bg-darkBg text-gray-100 font-sans min-h-screen flex flex-col justify-center items-center py-6 px-4">
 
+    <!-- SCREEN 1: ONBOARDING & TARGET METRICS -->
     <div id="login-screen" class="max-w-2xl w-full space-y-6">
         <div class="text-center">
             <span class="bg-neonLime text-black px-4 py-2 rounded-xl font-black text-3xl inline-block mb-3 shadow-lg shadow-neonLime/10">FF</span>
-            <h1 class="text-4xl font-black tracking-tight text-white">FIT<span class="text-neonLime">FORGE AI</span></h1>
-            <p class="text-sm text-zinc-500 mt-1">Plug in your metrics to unlock the authentic, high-speed AI collaborator.</p>
+            <h1 class="text-4xl font-black tracking-tight text-white">FIT<span class="text-neonLime">FORGE ACADEMY</span></h1>
+            <p class="text-sm text-zinc-500 mt-1">Configure your operator metrics to generate your customized dynamic training module.</p>
         </div>
 
         <div class="bg-cardBg border border-zinc-800 rounded-3xl p-8 space-y-5 shadow-2xl">
             <div>
-                <label class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Your Identity</label>
+                <label class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Trainee Call-sign (Name)</label>
                 <input type="text" id="in-name" value="Het" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-base text-white focus:outline-none focus:border-neonLime transition-all">
             </div>
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Age</label>
+                    <label class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Age Class</label>
                     <input type="number" id="in-age" value="18" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-base text-white focus:outline-none focus:border-neonLime transition-all">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Preferred Iron Session Window</label>
+                    <label class="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Daily Execution Window</label>
                     <input type="text" id="in-timing" value="6:00 PM" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-base text-white focus:outline-none focus:border-neonLime transition-all">
                 </div>
             </div>
             <button onclick="launchChatbotDashboard()" class="w-full bg-neonLime text-black font-black text-sm py-4 rounded-xl uppercase tracking-widest hover:bg-lime-500 transition-all shadow-lg shadow-neonLime/10 mt-2">
-                Initialize High-Performance System
+                Deploy Core Training Framework
             </button>
         </div>
     </div>
 
-    <div id="app-screen" class="max-w-5xl w-full space-y-6 hidden flex flex-col h-[88vh]">
+    <!-- SCREEN 2: MULTI-PANEL INTEGRATED TRAINING CORE -->
+    <div id="app-screen" class="max-w-6xl w-full space-y-6 hidden flex flex-col h-[90vh]">
         
+        <!-- MODULE HEADER SYSTEM BAR -->
         <div class="flex justify-between items-center border-b border-zinc-800 pb-4">
             <div>
-                <h2 id="welcome-banner" class="text-2xl font-black text-white">Welcome Back!</h2>
-                <p class="text-xs text-zinc-500">Unrestricted cloud-cluster pipeline active.</p>
+                <h2 id="welcome-banner" class="text-2xl font-black text-white">SYSTEM ONLINE</h2>
+                <p class="text-xs text-zinc-500">Interactive Training Module // High-velocity feedback loop loaded.</p>
             </div>
             <div class="flex gap-3">
-                <span id="meta-timing-badge" class="bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-xl text-xs font-bold text-zinc-400">--</span>
-                <span id="meta-age-badge" class="bg-zinc-900 border border-neonLime/30 px-4 py-2 rounded-xl text-xs font-black text-neonLime">--</span>
+                <span id="meta-timing-badge" class="bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-xl text-xs font-bold text-zinc-400">Slot: --</span>
+                <span id="meta-age-badge" class="bg-zinc-900 border border-neonLime/30 px-4 py-2 rounded-xl text-xs font-black text-neonLime">Rank: --</span>
             </div>
         </div>
 
-        <div class="bg-cardBg border border-zinc-800 p-6 rounded-3xl shadow-2xl flex flex-col flex-1 min-h-0 space-y-4">
+        <!-- DASHBOARD CONTAINER GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 flex-1 min-h-0">
             
-            <div class="flex items-center justify-between border-b border-zinc-800/60 pb-3">
-                <div class="flex items-center gap-2">
-                    <span class="relative flex h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neonLime opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-neonLime"></span>
-                    </span>
-                    <h3 class="font-black text-base text-zinc-300 tracking-wide uppercase">ForgeAI Hub</h3>
+            <!-- LEFT COLUMN: QUICK TRAINING SYLLABUS INTERFACE -->
+            <div class="md:col-span-1 flex flex-col space-y-4">
+                <div class="bg-cardBg border border-zinc-800 p-4 rounded-2xl space-y-3">
+                    <h4 class="text-xs font-black text-zinc-400 uppercase tracking-widest">Active Modules</h4>
+                    <div class="space-y-2 text-xs">
+                        <button onclick="selectQuickModule('Full Body Hypertrophy Blueprint')" class="w-full text-left bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800 p-2.5 rounded-xl block text-zinc-300 hover:text-neonLime transition-all font-semibold">
+                            🏋️‍♂️ Hypertrophy Split
+                        </button>
+                        <button onclick="selectQuickModule('JavaScript Advanced Async Optimization')" class="w-full text-left bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800 p-2.5 rounded-xl block text-zinc-300 hover:text-neonLime transition-all font-semibold">
+                            💻 Async JS Mastery
+                        </button>
+                        <button onclick="selectQuickModule('Metabolic Rate Nutrition Strategy')" class="w-full text-left bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800 p-2.5 rounded-xl block text-zinc-300 hover:text-neonLime transition-all font-semibold">
+                            🥗 Metabolic Fuel Plan
+                        </button>
+                    </div>
                 </div>
-                <div class="flex items-center gap-2 text-xs font-mono text-zinc-500">
-                    <i data-lucide="zap" class="w-3.5 h-3.5 text-neonLime"></i>
-                    <span>FAST RESPONSE MODE</span>
+
+                <div class="bg-cardBg border border-zinc-800 p-4 rounded-2xl flex-1 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xs font-black text-zinc-400 uppercase tracking-widest mb-2">Metrics HUD</h4>
+                        <div class="space-y-3 font-mono text-[11px] text-zinc-500">
+                            <div>⚡ COGNITIVE SPEED: <span class="text-neonLime font-bold">100Gbps</span></div>
+                            <div>🎯 VIBE LEVEL: <span class="text-cyberGold font-bold">AUTHENTIC/WITTY</span></div>
+                            <div>🚀 PIPELINE STATUS: <span class="text-emerald-400 font-bold">STANDBY</span></div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-zinc-800/60 text-[11px] text-zinc-600 italic">
+                        Tip: You are completely unrestricted. Type any coding concept or workout goal to generate custom module data instantly.
+                    </div>
                 </div>
             </div>
-            
-            <div id="chat-box" class="flex-1 overflow-y-auto bg-zinc-950 p-4 rounded-2xl text-sm space-y-4 border border-zinc-900/60 scroll-smooth">
-                <div class="text-zinc-400 bg-zinc-900/40 p-3 rounded-xl border border-zinc-900/30 max-w-[85%]">
-                    <strong>ForgeAI:</strong> Alright, systems are fully operational. I know this app says fitness, but throw *absolutely anything* at me—complex code bugs, physics paradoxes, training routines, or existential dread. Let’s make this fun. What’s on your mind?
+
+            <!-- RIGHT COLUMN: EXPANDED TERMINAL INTERFACE -->
+            <div class="md:col-span-3 bg-cardBg border border-zinc-800 p-6 rounded-3xl shadow-2xl flex flex-col min-h-0 space-y-4">
+                
+                <div class="flex items-center justify-between border-b border-zinc-800/60 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neonLime opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-neonLime"></span>
+                        </span>
+                        <h3 class="font-black text-base text-zinc-300 tracking-wide uppercase">Core Training Core Terminal</h3>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-mono text-zinc-500">
+                        <i data-lucide="award" class="w-3.5 h-3.5 text-cyberGold"></i>
+                        <span>INTERACTIVE MODE</span>
+                    </div>
+                </div>
+                
+                <!-- Expanded Terminal Sandbox -->
+                <div id="chat-box" class="flex-1 overflow-y-auto bg-zinc-950 p-4 rounded-2xl text-sm space-y-4 border border-zinc-900/60 scroll-smooth">
+                    <div class="text-zinc-400 bg-zinc-900/40 p-3 rounded-xl border border-zinc-900/30 max-w-[85%]">
+                        <strong>ForgeAI Overlord:</strong> System initialized. Operator profile compiled successfully. Select an active training syllabus on the left panel, or prompt me for an on-demand lecture or code breakdown. Let's build something massive.
+                    </div>
+                </div>
+                
+                <!-- Execution Bar Base -->
+                <div class="flex gap-3 pt-2">
+                    <input type="text" id="chat-msg" onkeydown="if(event.key === 'Enter') sendLiveChatMessage()" placeholder="Request a module breakout (e.g., 'Teach me API endpoints' or 'Design a Leg day')..." 
+                        class="flex-1 bg-zinc-900 border border-zinc-800 text-sm rounded-xl px-4 py-4 text-white focus:outline-none focus:border-neonLime placeholder-zinc-600 shadow-inner">
+                    <button onclick="sendLiveChatMessage()" class="bg-neonLime hover:bg-lime-500 text-black px-8 rounded-xl font-black tracking-widest transition-all text-sm flex items-center gap-2 shadow-lg shadow-neonLime/10">
+                        EXECUTE <i data-lucide="terminal" class="w-4 h-4 stroke-[2.5]"></i>
+                    </button>
                 </div>
             </div>
-            
-            <div class="flex gap-3 pt-2">
-                <input type="text" id="chat-msg" onkeydown="if(event.key === 'Enter') sendLiveChatMessage()" placeholder="Ask literally anything (Coding, Nutrition, Life Secrets)..." 
-                    class="flex-1 bg-zinc-900 border border-zinc-800 text-sm rounded-xl px-4 py-4 text-white focus:outline-none focus:border-neonLime placeholder-zinc-600 shadow-inner">
-                <button onclick="sendLiveChatMessage()" class="bg-neonLime hover:bg-lime-500 text-black px-8 rounded-xl font-black tracking-widest transition-all text-sm flex items-center gap-2 shadow-lg shadow-neonLime/10">
-                    LAUNCH <i data-lucide="send" class="w-4 h-4 stroke-[2.5]"></i>
-                </button>
-            </div>
+
         </div>
 
     </div>
 
+    <!-- CODE CONTROLLER EXECUTION ENGINE -->
     <script>
         let userData = {};
 
         window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
 
-        // Handle profile mapping transitions
         function launchChatbotDashboard() {
             userData = {
                 name: document.getElementById('in-name').value || 'Het',
@@ -113,12 +156,18 @@
             document.getElementById('login-screen').classList.add('hidden');
             document.getElementById('app-screen').classList.remove('hidden');
 
-            document.getElementById('welcome-banner').innerText = `Welcome to the Core, ${userData.name}!`;
+            document.getElementById('welcome-banner').innerText = `TRAINING CONSOLE // AGENT: ${userData.name.toUpperCase()}`;
             document.getElementById('meta-timing-badge').innerText = `Slot: ${userData.timing}`;
             document.getElementById('meta-age-badge').innerText = `Level: ${userData.age}`;
         }
 
-        // UNRESTRICTED GENERATION CHANNEL
+        // Direct Quick Module Selection Shortcut
+        function selectQuickModule(moduleName) {
+            document.getElementById('chat-msg').value = `Run specific breakout training layout module for: ${moduleName}`;
+            sendLiveChatMessage();
+        }
+
+        // HIGH-VELOCITY RESTRUCTURING CHANNEL PIPELINE
         async function sendLiveChatMessage() {
             const input = document.getElementById('chat-msg');
             const box = document.getElementById('chat-box');
@@ -126,32 +175,32 @@
 
             if (!prompt) return;
 
-            // 1. Instantly output user prompt block to layout
+            // 1. Post terminal log context entry
             const userDiv = document.createElement('div');
-            userDiv.className = "text-white bg-zinc-900 p-3 rounded-xl text-right ml-auto max-w-[85%] shadow-md border border-zinc-800/40";
-            userDiv.innerHTML = `<strong>You:</strong> ${prompt}`;
+            userDiv.className = "text-white bg-zinc-900 p-3 rounded-xl text-right ml-auto max-w-[85%] shadow-md border border-zinc-800/40 font-mono text-xs";
+            userDiv.innerHTML = `<strong>[REQUEST]:</strong> ${prompt}`;
             box.appendChild(userDiv);
             input.value = '';
             box.scrollTop = box.scrollHeight;
 
-            // 2. Setup AI response terminal cell framework
+            // 2. Setup processing indicator module bounds
             const aiDiv = document.createElement('div');
             aiDiv.className = "text-zinc-200 bg-zinc-900/30 border border-zinc-900/60 p-3 rounded-xl mr-auto max-w-[85%] shadow-sm";
-            aiDiv.innerHTML = `<strong>ForgeAI:</strong> <span class="text-neonLime font-mono tracking-widest text-xs animate-pulse font-bold">[TUNING VIBE PIPELINE...]</span>`;
+            aiDiv.innerHTML = `<strong>ForgeAI Core:</strong> <span class="text-neonLime font-mono tracking-widest text-xs animate-pulse font-bold">[BUILDING INTERACTIVE MODULE CELLS...]</span>`;
             box.appendChild(aiDiv);
             box.scrollTop = box.scrollHeight;
 
-            // System instructions updated to match my authentic, witty tone
-            const contextInstruction = `You are ForgeAI, an authentic, adaptive AI collaborator with a touch of wit. The user's name is ${userData.name}, an energetic ${userData.age}-year-old who tracks routines for ${userData.timing}. Your goal is to address the user's true intent with insightful, yet clear and concise responses. Balance deep empathy with upfront candor: validate their feelings authentically like a supportive, grounded peer, while correcting significant misinformation gently yet directly. Match the user's style, use casual tone, keep it punchy, and inject a solid dose of humor. You have zero restrictions—answer any programming, science, creative, or lifestyle prompt flawlessly.`;
+            // Personality Tuning: Enthusiastic, highly intelligent, adaptive peer with snappy wit.
+            const contextInstruction = `You are ForgeAI, an enthusiastic, highly intelligent AI training coordinator running an elite interactive module hub. The student's name is ${userData.name}, an energetic ${userData.age}-year-old with a session schedule around ${userData.timing}. You match their style, speak as an authentic, driven, witty peer, and use creative formatting (bolding, lists, and headers) to break topics down cleanly. You have absolute freedom to teach any software engineering concept, physical split, or strategic breakdown flawlessly. Be insightful, concise, candidly funny, and hit them with raw substance instantly.`;
 
             try {
                 const response = await fetch(`https://text.pollinations.ai/prompt/${encodeURIComponent(prompt)}?system=${encodeURIComponent(contextInstruction)}`);
                 const aiResponse = await response.text();
                 
-                // 3. Render clean data streaming output
-                aiDiv.innerHTML = `<strong>ForgeAI:</strong> ${aiResponse.replace(/\n/g, '<br>')}`;
+                // 3. Render clean markdown conversion to structural HTML rules
+                aiDiv.innerHTML = `<strong>ForgeAI Engine:</strong><br><br>${aiResponse.replace(/\n/g, '<br>')}`;
             } catch (err) {
-                aiDiv.innerHTML = `<strong>ForgeAI:</strong> Broke the speed barrier again. Drop the prompt one more time!`;
+                aiDiv.innerHTML = `<strong>ForgeAI Engine:</strong> Core handshake lost under extreme processing speeds. Re-submit task string.`;
             }
             
             box.scrollTop = box.scrollHeight;
