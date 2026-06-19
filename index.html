@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Cross-Platform MediaPipe Hand Tracking Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
 
@@ -23,7 +22,6 @@
 </head>
 <body class="bg-darkBg text-gray-100 font-sans min-h-screen flex flex-col justify-center items-center p-3 sm:p-6 select-none">
 
-    <!-- SCREEN 1: ADAPTIVE ONBOARDING PANEL -->
     <div id="login-screen" class="max-w-xl w-full space-y-6 px-2 my-auto">
         <div class="text-center">
             <span class="bg-neonLime text-black px-4 py-1.5 rounded-xl font-black text-2xl inline-block mb-2 shadow-lg shadow-neonLime/10 animate-bounce">FF</span>
@@ -52,10 +50,8 @@
         </div>
     </div>
 
-    <!-- SCREEN 2: DYNAMIC SPLIT CONSOLE INTERFACE -->
     <div id="app-screen" class="w-full max-w-6xl space-y-4 hidden flex flex-col h-[94vh] lg:h-[88vh]">
         
-        <!-- HEADER SYSTEM BAR -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-zinc-800 pb-3">
             <div>
                 <h2 id="welcome-banner" class="text-xl sm:text-2xl font-black text-white tracking-tight">AI COMMAND CENTER</h2>
@@ -69,9 +65,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1 min-h-0 overflow-y-auto lg:overflow-visible">
             
-            <!-- LEFT LAYER: SENSORY HARDWARE CONTROL PANELS (4/12 WIDTH) -->
             <div class="lg:col-span-4 flex flex-col space-y-4 min-h-0">
-                <!-- VISION ARRAY -->
                 <div class="bg-cardBg border border-zinc-800 p-4 rounded-2xl flex flex-col relative overflow-hidden">
                     <h4 class="text-[11px] font-black text-zinc-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
                         <i data-lucide="eye" class="w-3.5 h-3.5 text-neonLime"></i> Spatial Vision Array
@@ -97,10 +91,8 @@
                     </div>
                 </div>
 
-                <!-- AUDIO & SPEECH PIPELINE -->
                 <div class="bg-cardBg border border-zinc-800 p-4 rounded-2xl flex flex-col justify-between flex-1 space-y-3">
                     <div class="space-y-3">
-                        <!-- MIC SWITCH BLOCK -->
                         <div>
                             <div class="flex items-center justify-between mb-2">
                                 <h4 class="text-[11px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-1">
@@ -123,7 +115,6 @@
                             </div>
                         </div>
 
-                        <!-- NEW: INTERACTIVE VOICE OUTPUT SWITCH BUTTON -->
                         <div>
                             <h4 class="text-[11px] font-black text-zinc-400 uppercase tracking-widest mb-2 flex items-center gap-1">
                                 <i data-lucide="volume-2" class="w-3.5 h-3.5 text-cyberGold"></i> System Voice Readout
@@ -136,16 +127,13 @@
                 </div>
             </div>
 
-            <!-- RIGHT LAYER: CORE ENGINE & CHAT CONSOLE (8/12 WIDTH) -->
             <div class="lg:col-span-8 bg-cardBg border border-zinc-800 p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col min-h-[450px] lg:min-h-0 flex-1 space-y-3">
                 <div class="flex items-center justify-between border-b border-zinc-800/60 pb-2.5">
                     <h3 class="font-black text-xs sm:text-sm text-zinc-300 tracking-wide uppercase">Processing Stream Matrix</h3>
                 </div>
                 
-                <!-- Chat Feed View Layout -->
                 <div id="chat-box" class="flex-1 overflow-y-auto bg-zinc-950 p-3 sm:p-4 rounded-xl sm:rounded-2xl text-xs sm:text-sm space-y-4 border border-zinc-900/60 scroll-smooth">
                     
-                    <!-- NEW ARCHITECTURE PRO: INTEGRATED LEARNING SUITE BOARD -->
                     <div id="learner-module" class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-4 space-y-3 text-zinc-300 shadow-lg">
                         <div class="flex items-center gap-2 border-b border-zinc-800 pb-2">
                             <i data-lucide="graduation-cap" class="w-5 h-5 text-neonLime"></i>
@@ -201,7 +189,7 @@
         // HARDWARE SYSTEM CONTROL SWITCH STATES
         let isMicManuallyPaused = false;
         let isSpeaking = false;
-        let isSpeechOutputEnabled = true; // DEFAULT SYSTEM TO VOICE AUDIO ON
+        let isSpeechOutputEnabled = true; // DEFAULT VOICE OUTPUT TO TRUE
 
         window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
 
@@ -224,6 +212,7 @@
             initVisionPipeline();
             initVoiceRecognitionLoop();
             
+            // Fires immediate greeting if vocal audio stream switch is active
             setTimeout(() => {
                 speakVoiceOutLoud(`Initialization routine finalized. Welcome to the console panel.`);
             }, 400);
@@ -234,7 +223,7 @@
             if (el) el.style.display = 'none';
         }
 
-        // --- NEW CHANNELS FOR SPEECH ACTUATOR SELECTION ---
+        // --- MANAGED CHANNELS FOR SPEECH ACTUATOR SELECTION ---
         function toggleSpeechOutput() {
             const btn = document.getElementById('speech-toggle-btn');
             if (isSpeechOutputEnabled) {
@@ -303,7 +292,7 @@
         }
 
         function speakVoiceOutLoud(rawText) {
-            // STOP IMMEDIATELY IF VOICE TOGGLE DISENGAGED BY USER
+            // STRICT INTERCEPT CHECK: If muted, do not perform actuation
             if (!isSpeechOutputEnabled) return;
 
             if ('speechSynthesis' in window) {
