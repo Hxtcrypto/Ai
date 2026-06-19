@@ -15,7 +15,17 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { darkBg: '#09090b', cardBg: '#141416', neonLime: '#a3e635', cyberGold: '#eab308' }
+                    colors: { darkBg: '#09090b', cardBg: '#141416', neonLime: '#a3e635', cyberGold: '#eab308' },
+                    animation: {
+                        'wave-slow': 'wave 1.2s ease-in-out infinite',
+                        'wave-fast': 'wave 0.8s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        wave: {
+                            '0%, 100%': { transform: 'scaleY(0.3)' },
+                            '50%': { transform: 'scaleY(1)' },
+                        }
+                    }
                 }
             }
         }
@@ -97,16 +107,31 @@
                     </div>
                 </div>
 
-                <!-- HUD Status Card Profile -->
+                <!-- HUD SOUND REACTIVE AUDIO BUTTON INTERFACE CARD -->
                 <div class="bg-cardBg border border-zinc-800 p-4 rounded-2xl flex flex-col justify-between flex-1 space-y-3">
                     <div>
                         <h4 class="text-[11px] font-black text-zinc-400 uppercase tracking-widest mb-2 flex items-center gap-1">
-                            <i data-lucide="activity" class="w-3 h-3 text-cyberGold"></i> Earshot Monitor
+                            <i data-lucide="volume-2" class="w-3.5 h-3.5 text-neonLime animate-pulse"></i> Mic Audio Stream
                         </h4>
-                        <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-900 text-xs text-zinc-400 font-mono min-h-[60px] flex items-center" id="voice-monitor">
-                            <span class="text-zinc-600 italic">Mic stream open, speak whenever u want...</span>
+                        
+                        <!-- SOUND WAVE INTERACTIVE HUB ELEMENT -->
+                        <div onclick="initVoiceRecognitionLoop()" class="cursor-pointer bg-zinc-950 p-4 rounded-xl border border-zinc-900 flex items-center justify-between gap-3 group hover:border-neonLime/30 transition-all shadow-inner">
+                            <div class="flex flex-col min-w-0">
+                                <span class="text-xs text-zinc-300 font-bold tracking-wide group-hover:text-neonLime transition-all">Tap to test voice sync</span>
+                                <span id="voice-monitor" class="text-[10px] text-zinc-500 font-mono truncate mt-0.5">Listening continuously for audio inputs...</span>
+                            </div>
+                            
+                            <!-- CYBER SOUNDWAVE BARS CONTROLLER LAYOUT -->
+                            <div class="flex items-end gap-0.5 h-6 shrink-0 px-1">
+                                <div id="wave-bar-1" class="w-1 h-3 bg-zinc-700 rounded-full transition-all duration-150 origin-bottom"></div>
+                                <div id="wave-bar-2" class="w-1 h-5 bg-zinc-600 rounded-full transition-all duration-150 origin-bottom"></div>
+                                <div id="wave-bar-3" class="w-1 h-2 bg-zinc-700 rounded-full transition-all duration-150 origin-bottom"></div>
+                                <div id="wave-bar-4" class="w-1 h-6 bg-zinc-500 rounded-full transition-all duration-150 origin-bottom"></div>
+                                <div id="wave-bar-5" class="w-1 h-4 bg-zinc-600 rounded-full transition-all duration-150 origin-bottom"></div>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="pt-3 border-t border-zinc-800/60 font-mono text-[10px] space-y-1">
                         <div class="flex items-center gap-1.5">
                             <span class="relative flex h-2 w-2">
@@ -180,6 +205,7 @@
         let videoElement, canvasElement, canvasCtx, cameraInstance = null;
         let audioUnlocked = false;
         let recognitionEngine = null;
+        let waveInterval = null;
         
         // Contextual Prompt Tracker Data Array
         let promptHistoryLog = [];
@@ -219,6 +245,38 @@
             }
         }
 
+        // TRIGGER AUDIO WAVE ANIMATION DYNAMICS
+        function animateSoundWaves(isActive) {
+            const bars = [
+                document.getElementById('wave-bar-1'),
+                document.getElementById('wave-bar-2'),
+                document.getElementById('wave-bar-3'),
+                document.getElementById('wave-bar-4'),
+                document.getElementById('wave-bar-5')
+            ];
+
+            if (waveInterval) clearInterval(waveInterval);
+
+            if (isActive) {
+                bars.forEach(bar => { if(bar) bar.classList.add('bg-neonLime'); });
+                waveInterval = setInterval(() => {
+                    bars.forEach(bar => {
+                        if (bar) {
+                            const randomHeight = Math.floor(Math.random() * 100) + 20;
+                            bar.style.transform = `scaleY(${randomHeight / 100})`;
+                        }
+                    });
+                }, 100);
+            } else {
+                bars.forEach(bar => {
+                    if (bar) {
+                        bar.style.transform = 'scaleY(0.4)';
+                        bar.className = bar.className.replace('bg-neonLime', 'bg-zinc-600');
+                    }
+                });
+            }
+        }
+
         function speakVoiceOutLoud(rawText) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel(); 
@@ -227,6 +285,7 @@
                 const utterance = new SpeechSynthesisUtterance(cleanText);
                 
                 if (recognitionEngine) { try { recognitionEngine.stop(); } catch(e){} }
+                animateSoundWaves(false);
 
                 utterance.onend = () => {
                     if (recognitionEngine) { try { recognitionEngine.start(); } catch(e){} }
@@ -242,14 +301,19 @@
         function initVoiceRecognitionLoop() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
-                document.getElementById('voice-monitor').innerHTML = `<span class="text-red-400">Speech input not working on this browser tab.</span>`;
+                document.getElementById('voice-monitor').innerHTML = `Speech input not working.`;
                 return;
             }
+
+            if (recognitionEngine) return; // Prevent double registration
 
             recognitionEngine = new SpeechRecognition();
             recognitionEngine.continuous = true;
             recognitionEngine.interimResults = true;
             recognitionEngine.lang = 'en-US';
+
+            recognitionEngine.onstart = () => { animateSoundWaves(true); };
+            recognitionEngine.onend = () => { animateSoundWaves(false); };
 
             recognitionEngine.onresult = (event) => {
                 let interimTranscript = '';
@@ -259,16 +323,10 @@
                     else interimTranscript += event.results[i][0].transcript;
                 }
                 
-                document.getElementById('voice-monitor').innerHTML = `<span class="text-neonLime font-bold">Heard u say:</span> "${finalTranscript || interimTranscript}"`;
+                document.getElementById('voice-monitor').innerText = finalTranscript || interimTranscript || "Listening...";
                 
                 if (finalTranscript.trim().length > 0) {
                     sendLiveChatMessage(finalTranscript.trim());
-                }
-            };
-
-            recognitionEngine.onend = () => {
-                if (!window.speechSynthesis.speaking) {
-                    try { recognitionEngine.start(); } catch(e){}
                 }
             };
 
